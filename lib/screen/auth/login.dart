@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:olshop2023/network/network.dart';
 import 'package:http/http.dart' as http;
-import 'package:olshop2023/screen/admin/menu_admin.dart';
+import 'package:olshop2023/screen/admin/menu/menu_admin.dart';
 import 'package:olshop2023/screen/auth/register.dart';
 import 'package:olshop2023/screen/user/menu_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';

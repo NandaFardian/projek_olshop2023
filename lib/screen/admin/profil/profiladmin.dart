@@ -5,9 +5,9 @@ import 'package:olshop2023/custom/customButton.dart';
 import 'package:olshop2023/custom/info_card.dart';
 import 'package:olshop2023/model/userModel.dart';
 import 'package:olshop2023/network/network.dart';
-import 'package:olshop2023/screen/admin/profil_admin_edit.dart';
-import 'package:olshop2023/screen/admin/profil_admin_edit_gambar.dart';
-import 'package:olshop2023/screen/admin/profil_detail_admin.dart';
+import 'package:olshop2023/screen/admin/profil/profil_admin_edit.dart';
+import 'package:olshop2023/screen/admin/profil/profil_admin_edit_gambar.dart';
+import 'package:olshop2023/screen/admin/profil/profil_detail_admin.dart';
 import 'package:olshop2023/screen/auth/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -200,7 +200,7 @@ class _ProfilAdminState extends State<ProfilAdmin> {
                                 color: const Color.fromARGB(255, 239, 147, 0),
                               ),
                               Text(
-                                a.nama,
+                                a.nama.toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 15.0,
                                   color: Colors.black,

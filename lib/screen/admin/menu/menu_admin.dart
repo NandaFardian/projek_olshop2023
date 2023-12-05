@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:olshop2023/screen/admin/invoice_admin.dart';
-import 'package:olshop2023/screen/admin/kategori_admin.dart';
-import 'package:olshop2023/screen/admin/produk_admin.dart';
-import 'package:olshop2023/screen/admin/profiladmin.dart';
+import 'package:olshop2023/screen/admin/invoice/invoice_admin.dart';
+import 'package:olshop2023/screen/admin/kategori/kategori_admin.dart';
+import 'package:olshop2023/screen/admin/produk/produk_admin.dart';
+import 'package:olshop2023/screen/admin/profil/profiladmin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuAdmin extends StatefulWidget {

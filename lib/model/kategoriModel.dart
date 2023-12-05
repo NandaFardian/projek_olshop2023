@@ -1,10 +1,10 @@
 class KategoriModel {
-  final String? id;
-  final String? nama;
+  final String id;
+  final String nama;
 
   KategoriModel({
-    this.id,
-    this.nama,
+    required this.id,
+    required this.nama,
   });
 
   factory KategoriModel.fromJson(Map<String, dynamic> json) {
