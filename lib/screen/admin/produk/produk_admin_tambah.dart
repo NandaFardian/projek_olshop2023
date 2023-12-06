@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:olshop2023/custom/customButton.dart';
+import 'package:olshop2023/model/kategoriModel.dart';
 import 'package:olshop2023/network/network.dart';
+import 'package:olshop2023/screen/admin/kategori/kategori_pilih.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,6 +19,18 @@ class ProdukAdminTambah extends StatefulWidget {
 }
 
 class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
+  TextEditingController kategoriController = TextEditingController();
+
+  late KategoriModel kategoriModel;
+
+  pilihKategori() async {
+    kategoriModel = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => KategoriPilih()));
+    setState(() {
+      kategoriController = TextEditingController(text: kategoriModel.nama);
+    });
+  }
+
   String? userid;
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -83,7 +97,7 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
     var request = http.MultipartRequest("POST", uri);
 
     request.fields['nama'] = namaController.text.trim();
-    request.fields['kategoriid'] = kategoriidController.text.trim();
+    request.fields['kategoriid'] = kategoriModel.id;
     request.fields['harga'] = hargaController.text.trim();
     request.fields['keterangan'] = keteranganController.text.trim();
     request.fields['tanggal'] = keteranganController.text.trim();
@@ -232,21 +246,23 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
                 icon: Icon(Icons.text_increase),
               ),
             ),
-            TextFormField(
-              validator: (e) {
-                if (e == null || e.isEmpty) {
-                  return "Isikan Kategori Produk";
-                }
-                return null;
+            InkWell(
+              onTap: () {
+                pilihKategori();
               },
-              keyboardType: TextInputType.multiline,
-              maxLines: 20,
-              minLines: 1,
-              controller: kategoriidController,
-              decoration: const InputDecoration(
-                hintText: "Isikan Kategori Produk",
-                labelText: "Isikan Kategori Produk",
-                icon: Icon(Icons.text_increase),
+              child: TextFormField(
+                enabled: false,
+                validator: (e) {
+                  if (e == null || e.isEmpty) {
+                    return "pilih kategori";
+                  }
+                  return null;
+                },
+                controller: kategoriController,
+                decoration: InputDecoration(
+                    hintText: "pilih kategori",
+                    labelText: "pilih kategori",
+                    icon: Icon(Icons.text_increase)),
               ),
             ),
             TextFormField(

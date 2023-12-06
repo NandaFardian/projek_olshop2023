@@ -124,8 +124,7 @@ class _KategoriAdminState extends State<KategoriAdmin> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 228, 199),
       appBar: AppBar(
-        elevation: 10,
-         
+        elevation: 10,        
         title: const Text(
           'Kategori Kita Bersama',
           style: TextStyle(
@@ -150,7 +149,7 @@ class _KategoriAdminState extends State<KategoriAdmin> {
         ],
       ),
       body: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: loading
             ? const Center(
                 child: CircularProgressIndicator(),

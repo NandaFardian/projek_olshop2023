@@ -220,6 +220,10 @@ class _ProfilAdminState extends State<ProfilAdmin> {
                                 icon: Icons.email,
                               ),
                               InfoCard(
+                                text: a.alamat,
+                                icon: Icons.map,
+                              ),
+                              InfoCard(
                                 text: a.noHp,
                                 icon: Icons.phone_iphone,
                               ),

@@ -135,10 +135,10 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 50),
                   Image.asset(
                     "images/logo.png",
-                    height: 250,
+                    height: 180,
                   ),
                   const SizedBox(height: 12),
                   Padding(
