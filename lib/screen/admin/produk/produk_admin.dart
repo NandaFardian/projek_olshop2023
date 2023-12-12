@@ -191,7 +191,7 @@ class _ProdukAdminState extends State<ProdukAdmin> {
                                                   color: Colors.black),
                                             ),
                                             Text(
-                                              "Harga : Rp.${price.format(int.parse(a.harga!))}",
+                                              "Harga : Rp.${price.format(int.parse(a.harga))}",
                                               style: const TextStyle(
                                                   fontSize: 15.0,
                                                   fontFamily: 'Source Sans Pro',

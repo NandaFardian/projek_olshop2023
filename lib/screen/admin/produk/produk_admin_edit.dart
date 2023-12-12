@@ -79,7 +79,7 @@ class _ProdukAdminEditState extends State<ProdukAdminEdit> {
     namaController = TextEditingController(text: widget.model.nama);
     hargaController = TextEditingController(text: widget.model.harga);
     keteranganController = TextEditingController(text: widget.model.keterangan);
-    tgldate = widget.model.tanggal!;
+    tgldate = widget.model.tanggal;
   }
 
   String? pilihTanggal, labelText;
