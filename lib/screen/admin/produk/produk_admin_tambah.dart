@@ -2,8 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:olshop2023/custom/currency.dart';
 import 'package:olshop2023/custom/customButton.dart';
+import 'package:olshop2023/custom/datePicker.dart';
 import 'package:olshop2023/model/kategoriModel.dart';
 import 'package:olshop2023/network/network.dart';
 import 'package:olshop2023/screen/admin/kategori/kategori_pilih.dart';
@@ -55,12 +59,23 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
     });
   }
 
-  final _key = GlobalKey<FormState>();
-  TextEditingController namaController = TextEditingController();
-  TextEditingController kategoriidController = TextEditingController();
-  TextEditingController hargaController = TextEditingController();
-  TextEditingController keteranganController = TextEditingController();
-  TextEditingController tanggalController = TextEditingController();
+  late String pilihTanggal, labelText;
+  DateTime tgl = DateTime.now();
+  final TextStyle valueStyle = const TextStyle(fontSize: 16.0);
+  Future<void> _selectedDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: tgl,
+        firstDate: DateTime(1992),
+        lastDate: DateTime(2099));
+
+    if (picked != null && picked != tgl) {
+      setState(() {
+        tgl = picked;
+        pilihTanggal = DateFormat('dd/MM/yyyy').format(tgl);
+      });
+    } else {}
+  }
 
   cek() {
     if (_key.currentState!.validate()) {
@@ -68,6 +83,13 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
       submit();
     }
   }
+
+  final _key = GlobalKey<FormState>();
+  TextEditingController namaController = TextEditingController();
+  TextEditingController kategoriidController = TextEditingController();
+  TextEditingController hargaController = TextEditingController();
+  TextEditingController keteranganController = TextEditingController();
+  TextEditingController tanggalController = TextEditingController();
 
   submit() async {
     showDialog(
@@ -100,8 +122,7 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
     request.fields['kategoriid'] = kategoriModel.id;
     request.fields['harga'] = hargaController.text.trim();
     request.fields['keterangan'] = keteranganController.text.trim();
-    request.fields['tanggal'] = keteranganController.text.trim();
-
+    request.fields['tanggal'] = "$tgl";
     var pic = await http.MultipartFile.fromPath("gambar", _imageFile!.path);
     request.files.add(pic);
 
@@ -259,7 +280,7 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
                   return null;
                 },
                 controller: kategoriController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     hintText: "pilih kategori",
                     labelText: "pilih kategori",
                     icon: Icon(Icons.text_increase)),
@@ -272,13 +293,17 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
                 }
                 return null;
               },
-              keyboardType: TextInputType.multiline,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                CurrencyFormat()
+              ],
+              keyboardType: TextInputType.number,
               maxLines: 20,
               minLines: 1,
               controller: hargaController,
               decoration: const InputDecoration(
-                hintText: "Isikan Kategori Produk",
-                labelText: "Isikan Kategori Produk",
+                hintText: "Isikan Harga Produk",
+                labelText: "Isikan Harga Produk",
                 icon: Icon(Icons.text_increase),
               ),
             ),
@@ -299,22 +324,13 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
                 icon: Icon(Icons.text_increase),
               ),
             ),
-            TextFormField(
-              validator: (e) {
-                if (e == null || e.isEmpty) {
-                  return "Isikan Tanggal Produk";
-                }
-                return null;
+            DateDropDown(
+              labelText: "Tanggal",
+              valueText: DateFormat('dd/MM/yyyy').format(tgl),
+              valueStyle: valueStyle,
+              onPressed: () {
+                _selectedDate(context);
               },
-              keyboardType: TextInputType.multiline,
-              maxLines: 20,
-              minLines: 1,
-              controller: tanggalController,
-              decoration: const InputDecoration(
-                hintText: "Isikan Tanggal Produk",
-                labelText: "Isikan Tanggal Produk",
-                icon: Icon(Icons.text_increase),
-              ),
             ),
             const SizedBox(
               height: 20,
@@ -323,9 +339,9 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
               onPressed: () {
                 cek();
               },
-              child: CustomButton(
+              child: const CustomButton(
                 "Tambah",
-                color: const Color.fromARGB(255, 239, 147, 0),
+                color: Color.fromARGB(255, 239, 147, 0),
               ),
             ),
           ],

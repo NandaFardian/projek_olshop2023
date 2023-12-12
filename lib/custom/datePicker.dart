@@ -7,16 +7,14 @@ class DateDropDown extends StatelessWidget {
   final String valueText;
   final TextStyle valueStyle;
   final VoidCallback onPressed;
-  final Widget child;
 
-  const DateDropDown(
-      {required Key key,
-      required this.labelText,
-      required this.valueText,
-      required this.valueStyle,
-      required this.onPressed,
-      required this.child})
-      : super(key: key);
+  const DateDropDown({
+    Key? key,
+    required this.labelText,
+    required this.valueText,
+    required this.valueStyle,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +23,7 @@ class DateDropDown extends StatelessWidget {
         child: InputDecorator(
           decoration: InputDecoration(
             labelText: labelText,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+            icon: const Icon(Icons.calendar_today),
           ),
           baseStyle: valueStyle,
           child: Row(

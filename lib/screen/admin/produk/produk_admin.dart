@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:olshop2023/model/produkModel.dart';
 import 'package:olshop2023/network/network.dart';
 import 'package:http/http.dart' as http;
@@ -13,6 +14,8 @@ class ProdukAdmin extends StatefulWidget {
   @override
   State<ProdukAdmin> createState() => _ProdukAdminState();
 }
+
+final price = NumberFormat("#,##0", 'en_US');
 
 class _ProdukAdminState extends State<ProdukAdmin> {
   var loading = false;
@@ -173,6 +176,7 @@ class _ProdukAdminState extends State<ProdukAdmin> {
                                 children: [
                                   Expanded(
                                     child: Card(
+                                      shadowColor: Colors.orange,
                                       child: Container(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
@@ -186,14 +190,24 @@ class _ProdukAdminState extends State<ProdukAdmin> {
                                                   fontFamily: 'Source Sans Pro',
                                                   color: Colors.black),
                                             ),
+                                            Text(
+                                              "Harga : Rp.${price.format(int.parse(a.harga!))}",
+                                              style: const TextStyle(
+                                                  fontSize: 15.0,
+                                                  fontFamily: 'Source Sans Pro',
+                                                  color: Colors.black),
+                                            ),
+                                            const SizedBox(
+                                              height: 20.0,
+                                            ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                  MainAxisAlignment.center,
                                               children: <Widget>[
                                                 Image.network(
                                                   '${NetworkURL.server}/imageProduk/${a.gambar}',
-                                                  width: 80.0,
-                                                  height: 80.0,
+                                                  width: 150.0,
+                                                  height: 150.0,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ],
