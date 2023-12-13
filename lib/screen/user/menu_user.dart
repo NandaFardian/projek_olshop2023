@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:olshop2023/screen/auth/login.dart';
+import 'package:olshop2023/screen/user/Produk/produk_user.dart';
+import 'package:olshop2023/screen/user/invoice/invoice_user.dart';
+import 'package:olshop2023/screen/user/profil/profil_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuUser extends StatefulWidget {
@@ -11,6 +14,7 @@ class MenuUser extends StatefulWidget {
 }
 
 class _MenuUserState extends State<MenuUser> {
+  int selectIndex = 0;
   signOut() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.getInt("value") ?? 0;
@@ -28,62 +32,109 @@ class _MenuUserState extends State<MenuUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Profil Admin",
-          style: TextStyle(
-            fontSize: 15.0,
-            color: Colors.white,
-            fontFamily: 'roboto',
+      body: Stack(
+        children: [
+          Offstage(
+            offstage: selectIndex != 0,
+            child: TickerMode(
+              enabled: selectIndex == 0,
+              child: const ProdukUser(),
+            ),
           ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 247, 92, 20),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.logout),
-            color: Colors.white,
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: const Text("Warning"),
-                    content: const Text("Apakah Anda Yakin Inggin Keluar?"),
-                    actions: <Widget>[
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          side: BorderSide(
-                            width: 2,
-                            color: const Color.fromARGB(255, 247, 92, 20)
-                          ),
-                        ),
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('No',
-                        style: TextStyle(color: Color.fromARGB(255, 247, 92, 20)),),
-                      ),
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          side: BorderSide(
-                            width: 2,
-                            color: const Color.fromARGB(255, 247, 92, 20),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                          signOut();
-                        },
-                        child: const Text('Yes',
-                        style: TextStyle(color: Color.fromARGB(255, 247, 92, 20)),),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
+          Offstage(
+            offstage: selectIndex != 1,
+            child: const InvoiceUser(),
+          ),
+          Offstage(
+            offstage: selectIndex != 2,
+            child: const ProfilUser(),
           ),
         ],
+      ),
+      bottomNavigationBar: SizedBox(
+        width: 60,
+        height: 60,
+        child: Container(
+          padding: const EdgeInsets.all(0),
+          color: Color.fromARGB(255, 255, 255, 255),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    selectIndex = 0;
+                  });
+                },
+                child: Tab(
+                  icon: Icon(
+                    Icons.apps_outlined,
+                    size: 30.0,
+                    color: selectIndex == 0
+                        ? const Color.fromARGB(255, 239, 147, 0)
+                        : Colors.grey,
+                  ),
+                  child: Text(
+                    'Kategori',
+                    style: TextStyle(
+                        fontSize: 10.0,
+                        color: selectIndex == 0
+                            ? Color.fromARGB(255, 239, 147, 0)
+                            : Colors.grey),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    selectIndex = 1;
+                  });
+                },
+                child: Tab(
+                  icon: Icon(
+                    Icons.assignment_outlined,
+                    size: 30.0,
+                    color: selectIndex == 1
+                        ? const Color.fromARGB(255, 239, 147, 0)
+                        : Colors.grey,
+                  ),
+                  child: Text(
+                    'Invoice',
+                    style: TextStyle(
+                        fontSize: 10.0,
+                        color: selectIndex == 1
+                            ? Color.fromARGB(255, 239, 147, 0)
+                            : Colors.grey),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    selectIndex = 2;
+                  });
+                },
+                child: Tab(
+                  icon: Icon(
+                    Icons.people,
+                    size: 30.0,
+                    color: selectIndex == 2
+                        ? const Color.fromARGB(255, 239, 147, 0)
+                        : Colors.grey,
+                  ),
+                  child: Text(
+                    'Profile',
+                    style: TextStyle(
+                        fontSize: 10.0,
+                        color: selectIndex == 2
+                            ? const Color.fromARGB(255, 239, 147, 0)
+                            : Colors.grey),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
