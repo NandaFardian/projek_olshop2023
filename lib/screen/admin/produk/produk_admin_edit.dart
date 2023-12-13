@@ -317,7 +317,7 @@ class _ProdukAdminEditState extends State<ProdukAdminEdit> {
                   return null;
                 },
                 controller: kategoriController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     hintText: "pilih kategori",
                     labelText: "pilih kategori",
                     icon: Icon(Icons.text_increase)),
@@ -377,9 +377,9 @@ class _ProdukAdminEditState extends State<ProdukAdminEdit> {
               onPressed: () {
                 check();
               },
-              child: CustomButton(
+              child: const CustomButton(
                 "Edit",
-                color: const Color.fromARGB(255, 239, 147, 0),
+                color: Color.fromARGB(255, 239, 147, 0),
               ),
             ),
           ],

@@ -89,7 +89,7 @@ class _ProfilUserState extends State<ProfilUser> {
       backgroundColor: const Color.fromARGB(255, 255, 228, 199),
       appBar: AppBar(
         title: const Text(
-          "Profil Admin",
+          "Profil User",
           style: TextStyle(
             fontSize: 15.0,
             color: Colors.white,

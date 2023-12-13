@@ -223,9 +223,9 @@ class _KategoriAdminEditState extends State<KategoriAdminEdit> {
               onPressed: () {
                 check();
               },
-              child: CustomButton(
+              child: const CustomButton(
                 "Edit",
-                color: const Color.fromARGB(255, 239, 147, 0),
+                color: Color.fromARGB(255, 239, 147, 0),
               ),
             ),
           ],

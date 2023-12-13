@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:olshop2023/screen/auth/login.dart';
-import 'package:olshop2023/screen/user/Produk/produk_user.dart';
+import 'package:olshop2023/screen/user/home/home_user.dart';
 import 'package:olshop2023/screen/user/invoice/invoice_user.dart';
 import 'package:olshop2023/screen/user/profil/profil_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,7 +38,7 @@ class _MenuUserState extends State<MenuUser> {
             offstage: selectIndex != 0,
             child: TickerMode(
               enabled: selectIndex == 0,
-              child: const ProdukUser(),
+              child: const HomeUser(),
             ),
           ),
           Offstage(
@@ -68,14 +68,14 @@ class _MenuUserState extends State<MenuUser> {
                 },
                 child: Tab(
                   icon: Icon(
-                    Icons.apps_outlined,
+                    Icons.home,
                     size: 30.0,
                     color: selectIndex == 0
                         ? const Color.fromARGB(255, 239, 147, 0)
                         : Colors.grey,
                   ),
                   child: Text(
-                    'Kategori',
+                    'Beranda',
                     style: TextStyle(
                         fontSize: 10.0,
                         color: selectIndex == 0
