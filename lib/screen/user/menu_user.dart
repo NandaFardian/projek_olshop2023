@@ -44,8 +44,7 @@ class _MenuUserState extends State<MenuUser> {
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         body: Stack(
           children: [
             Offstage(
@@ -137,7 +136,6 @@ class _MenuUserState extends State<MenuUser> {
             ),
           ),
         ),
-      ),
     );
   }
 }
