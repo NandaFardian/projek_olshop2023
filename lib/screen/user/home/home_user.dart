@@ -167,7 +167,8 @@ class _HomeUserState extends State<HomeUser> {
                       itemBuilder: (context, i) {
                         final a = listCategory[i];
                         return InkWell(
-                          onTap: () {
+                          onTap: () 
+                          {
                             setState(() {
                               filter = true;
                               index = i;
@@ -224,7 +225,14 @@ class _HomeUserState extends State<HomeUser> {
                               itemBuilder: (context, i) {
                                 final a = listCategory[index].produk[i];
                                 return InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomeUserDetail(a),
+                                      ),
+                                    );
+                                  },
                                   child: Container(
                                     decoration: BoxDecoration(
                                         border: Border.all(
@@ -296,7 +304,7 @@ class _HomeUserState extends State<HomeUser> {
                                   MaterialPageRoute(
                                     builder: (context) => HomeUserDetail(a),
                                   ),
-                              );
+                                );
                               },
                               child: Container(
                                 decoration: BoxDecoration(
