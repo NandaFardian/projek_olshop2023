@@ -140,7 +140,7 @@ class _HomeUserState extends State<HomeUser> {
             onPressed: () {},
             icon: const Stack(
               children: <Widget>[
-                Icon(Icons.shopping_cart),
+                Icon(Icons.shopping_cart, color: Colors.white,),
               ],
             ),
           ),
