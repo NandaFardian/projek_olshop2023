@@ -75,7 +75,7 @@ class _MenuAdminState extends State<MenuAdmin> {
         height: 60,
         child: Container(
           padding: const EdgeInsets.all(0),
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromARGB(255, 255, 255, 255),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -98,7 +98,7 @@ class _MenuAdminState extends State<MenuAdmin> {
                     style: TextStyle(
                         fontSize: 10.0,
                         color: selectIndex == 0
-                            ? Color.fromARGB(255, 239, 147, 0)
+                            ? const Color.fromARGB(255, 239, 147, 0)
                             : Colors.grey),
                   ),
                 ),
@@ -122,7 +122,7 @@ class _MenuAdminState extends State<MenuAdmin> {
                     style: TextStyle(
                         fontSize: 10.0,
                         color: selectIndex == 1
-                            ? Color.fromARGB(255, 239, 147, 0)
+                            ? const Color.fromARGB(255, 239, 147, 0)
                             : Colors.grey),
                   ),
                 ),

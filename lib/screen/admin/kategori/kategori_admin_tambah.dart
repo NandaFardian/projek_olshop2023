@@ -39,9 +39,8 @@ class _KategoriAdminTambahState extends State<KategoriAdminTambah> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return WillPopScope(
-          onWillPop: () async => false,
-          child: const AlertDialog(
+        return const PopScope(
+          child: AlertDialog(
             title: Text('Processing..'),
             content: Column(
               mainAxisSize: MainAxisSize.min,
@@ -191,9 +190,9 @@ class _KategoriAdminTambahState extends State<KategoriAdminTambah> {
               onPressed: () {
                 cek();
               },
-              child: CustomButton(
+              child: const CustomButton(
                 "Tambah",
-                color: const Color.fromARGB(255, 239, 147, 0),
+                color: Color.fromARGB(255, 239, 147, 0),
               ),
             ),
           ],

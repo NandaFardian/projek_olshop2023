@@ -86,7 +86,7 @@ class _KategoriPilihState extends State<KategoriPilih> {
                         Navigator.pop(context, a);
                       },
                       child: Container(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
@@ -94,13 +94,13 @@ class _KategoriPilihState extends State<KategoriPilih> {
                               child: Card(
                                 elevation: 5,
                                 margin:
-                                    EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
+                                    const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 color: const Color.fromARGB(255, 239, 147, 0),
                                 child: Container(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

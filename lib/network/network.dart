@@ -1,5 +1,5 @@
 class NetworkURL {
-  static String server = "http://192.168.1.12/projek_olshop";
+  static String server = "http://192.168.100.228/projek_olshop";
 
   static String login() {
     return "$server/API/login.php";
@@ -67,6 +67,10 @@ class NetworkURL {
 
   static String kategoriHapus() {
     return "$server/API/kategoriHapus.php";
+  }
+
+  static String kategoriFilter() {
+    return "$server/API/kategoriFilter.php";
   }
 
   static String invoice() {

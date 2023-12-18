@@ -10,8 +10,20 @@ class InvoiceUser extends StatefulWidget {
 class _InvoiceUserState extends State<InvoiceUser> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-    backgroundColor: Color.fromARGB(255, 255, 228, 199),  
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 228, 199),
+      appBar: AppBar(
+        title: const Text(
+          "Invoice",
+          style: TextStyle(
+            fontSize: 15.0,
+            color: Colors.white,
+            fontFamily: 'roboto',
+            backgroundColor: Color.fromARGB(255, 239, 147, 0),
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 239, 147, 0),
+      ),
     );
   }
 }

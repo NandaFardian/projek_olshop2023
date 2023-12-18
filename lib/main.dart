@@ -10,7 +10,7 @@ void main() {
           splashTransition: SplashTransition.fadeTransition,
           duration: 2500,
           backgroundColor: const Color.fromARGB(255, 255, 228, 199),
-          nextScreen: Login()),
+          nextScreen: const Login()),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

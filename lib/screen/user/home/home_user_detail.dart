@@ -21,7 +21,7 @@ class _HomeUserDetailState extends State<HomeUserDetail> {
       backgroundColor: const Color.fromARGB(255, 255, 228, 199),
       appBar: AppBar(
         title: Text(
-          widget.model.nama,
+          widget.model.nama!,
           style: const TextStyle(
             fontSize: 15.0,
             color: Colors.white,
@@ -67,25 +67,9 @@ class _HomeUserDetailState extends State<HomeUserDetail> {
                 const SizedBox(
                   height: 6,
                 ),
-                Text(
-                  "Tanggal Posting : ${widget.model.tanggal}",
-                  textAlign: TextAlign.right,
-                  style: const TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                    fontFamily: 'Source Sans Pro',
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: const Divider(
-                    color: Colors.grey,
-                  ),
-                ),
                 const Text(
-                  "Nama Produk :",
-                  textAlign: TextAlign.center,
+                  "List Keterangan :",
+                  textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.black,
@@ -93,96 +77,43 @@ class _HomeUserDetailState extends State<HomeUserDetail> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
-                  widget.model.nama,
-                  textAlign: TextAlign.center,
+                  widget.model.keterangan!,
+                  textAlign: TextAlign.justify,
                   style: const TextStyle(
                     fontSize: 15.0,
                     color: Colors.black,
                     fontFamily: 'Source Sans Pro',
                   ),  
                 ),
+                
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: const Divider(
                     color: Colors.grey,
                   ),
                 ),
-                const Text(
-                  "Kategori :",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                    fontFamily: 'Source Sans Pro',
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  widget.model.namakategori,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                    fontFamily: 'Source Sans Pro',
-                  ),  
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: const Divider(
-                    color: Colors.grey,
-                  ),
-                ),
-                const Text(
-                  "Harga :",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                    fontFamily: 'Source Sans Pro',
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "Rp.${price.format(int.parse(widget.model.harga))}",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                    fontFamily: 'Source Sans Pro',
-                  ),  
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: const Divider(
-                    color: Colors.grey,
-                  ),
-                ),
-                const Text(
-                  "Keterangan :",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                    fontFamily: 'Source Sans Pro',
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  widget.model.keterangan,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                    fontFamily: 'Source Sans Pro',
-                  ),  
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: const Divider(
-                    color: Colors.grey,
-                  ),
-                ),
+                const SizedBox (
+                  height: 180,),
+
+                InkWell(
+                  onTap: () {
+
+                  },
+                  child: Container(
+                            margin: const EdgeInsets.only(right: 8, left: 250),
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: const Color.fromARGB(255, 239, 147, 0)),
+                            child: const Center(
+                              child: Text("Add To Cart", style: TextStyle(color: Colors.white),),
+                            ),
+                          ),
+                )
               ],
             ),
           ),

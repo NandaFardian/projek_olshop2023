@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class KategoriModel {
   final String id;
   final String nama;

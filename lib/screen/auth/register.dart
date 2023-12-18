@@ -152,7 +152,7 @@ class _RegisterState extends State<Register> {
             fontFamily: 'Cairo',
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 239, 147, 0),
+        backgroundColor: const Color.fromARGB(255, 239, 147, 0),
         leading: GestureDetector(
           child: const Icon(
             Icons.arrow_back_ios,
@@ -253,9 +253,9 @@ class _RegisterState extends State<Register> {
               onPressed: () {
                 cek();
               },
-              child: CustomButton(
+              child: const CustomButton(
                 "Buat Akun",
-                color: const Color.fromARGB(255, 239, 147, 0),
+                color: Color.fromARGB(255, 239, 147, 0),
               ),
             ),
           ],

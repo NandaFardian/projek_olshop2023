@@ -31,7 +31,7 @@ class _ProdukAdminEditState extends State<ProdukAdminEdit> {
 
   pilihKategori() async {
     kategoriModel = await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => KategoriPilih()));
+        context, MaterialPageRoute(builder: (context) => const KategoriPilih()));
     setState(() {
       kategoripilihController = kategoriController;
       kategoripilihController = TextEditingController(text: kategoriModel.id);
@@ -114,8 +114,7 @@ class _ProdukAdminEditState extends State<ProdukAdminEdit> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return WillPopScope(
-          onWillPop: () async => false,
+        return PopScope(
           child: AlertDialog(
             title: const Text('Processing..'),
             content: const Column(
@@ -158,10 +157,10 @@ class _ProdukAdminEditState extends State<ProdukAdminEdit> {
     request.fields['harga'] = hargaController.text.replaceAll(",", "");
     request.fields['keterangan'] = keteranganController.text.trim();
     request.fields['tanggal'] = "$tgldate";
-    request.fields['produkid'] = widget.model.id;
+    request.fields['produkid'] = widget.model.id!;
 
     if (_imageFile == null) {
-      request.fields['gambar'] = widget.model.gambar;
+      request.fields['gambar'] = widget.model.gambar!;
     } else {
       var pic = await http.MultipartFile.fromPath("gambar", _imageFile!.path);
       request.files.add(pic);

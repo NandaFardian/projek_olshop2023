@@ -1,22 +1,24 @@
+// ignore_for_file: file_names
+
 class ProdukModel {
-  final String id;
-  final String nama;
-  final String kategoriid;
-  final String harga;
-  final String keterangan;
-  final String tanggal;
-  final String gambar;
-  final String namakategori;
+  final String? id;
+  final String? nama;
+  final String? kategoriid;
+  final String? harga;
+  final String? keterangan;
+  final String? tanggal;
+  final String? gambar;
+  final String? namakategori;
 
   ProdukModel({
-    required this.id,
-    required this.nama,
-    required this.kategoriid,
-    required this.harga,
-    required this.keterangan,
-    required this.tanggal,
-    required this.gambar,
-    required this.namakategori,
+     this.id,
+     this.nama,
+     this.kategoriid,
+     this.harga,
+     this.keterangan,
+     this.tanggal,
+     this.gambar,
+     this.namakategori,
   });
 
   factory ProdukModel.fromJson(Map<String, dynamic> json) {

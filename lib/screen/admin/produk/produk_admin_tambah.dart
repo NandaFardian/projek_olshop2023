@@ -29,7 +29,7 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
 
   pilihKategori() async {
     kategoriModel = await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => KategoriPilih()));
+        context, MaterialPageRoute(builder: (context) => const KategoriPilih()));
     setState(() {
       kategoriController = TextEditingController(text: kategoriModel.nama);
     });
@@ -96,9 +96,8 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return WillPopScope(
-          onWillPop: () async => false,
-          child: const AlertDialog(
+        return const PopScope(
+          child: AlertDialog(
             title: Text('Processing..'),
             content: Column(
               mainAxisSize: MainAxisSize.min,

@@ -233,7 +233,7 @@ class _KategoriAdminState extends State<KategoriAdmin> {
                       Text(
                         "Belum Ada Kategori Yang Di Tambahkan",
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: const Color.fromARGB(255, 239, 147, 0),
+                        style: TextStyle(color: Color.fromARGB(255, 239, 147, 0),
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ],

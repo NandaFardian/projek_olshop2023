@@ -13,7 +13,7 @@ class _InvoiceAdminDetailState extends State<InvoiceAdminDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 228, 199),
+      backgroundColor: const Color.fromARGB(255, 255, 228, 199),
       appBar: AppBar(
         title: Text(
           "No Invoice : ${widget.model.invoice}",
@@ -45,7 +45,7 @@ class _InvoiceAdminDetailState extends State<InvoiceAdminDetail> {
                   height: 6,
                 ),
                 Text(
-                  "${widget.model.userid}",
+                  widget.model.userid,
                   textAlign: TextAlign.right,
                   style: const TextStyle(
                     fontSize: 15.0,

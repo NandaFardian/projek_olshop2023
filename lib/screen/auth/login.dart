@@ -128,7 +128,7 @@ class _LoginState extends State<Login> {
       case LoginStatus.notSignIn:
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Color.fromARGB(255, 255, 228, 199),
+          backgroundColor: const Color.fromARGB(255, 255, 228, 199),
           body: Form(
             key: _key,
             child: Padding(
@@ -148,7 +148,7 @@ class _LoginState extends State<Login> {
                         Container(
                           padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 242, 161, 30),
+                            color: const Color.fromARGB(255, 242, 161, 30),
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: const [
                               BoxShadow(
@@ -218,7 +218,7 @@ class _LoginState extends State<Login> {
                                     borderRadius: BorderRadius.circular(150.0),
                                   ),
                                   elevation: 18.0,
-                                  color: Color.fromARGB(255, 255, 208, 158),
+                                  color: const Color.fromARGB(255, 255, 208, 158),
                                   // color: Color(0xFF801E48),
                                   clipBehavior: Clip.antiAlias,
                                   child: MaterialButton(

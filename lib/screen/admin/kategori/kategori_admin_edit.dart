@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:olshop2023/custom/customButton.dart';
 import 'package:olshop2023/model/kategoriModel.dart';
 import 'package:olshop2023/network/network.dart';
@@ -19,20 +17,6 @@ class KategoriAdminEdit extends StatefulWidget {
 
 class _KategoriAdminEditState extends State<KategoriAdminEdit> {
   final _key = GlobalKey<FormState>();
-
-  File? _imageFile;
-  final picker = ImagePicker();
-  _pilihcamera() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      if (pickedFile != null) {
-        _imageFile = File(pickedFile.path);
-        print('_image: $_imageFile');
-      } else {
-        print('No image selected');
-      }
-    });
-  }
 
   late TextEditingController namaController;
 
@@ -53,8 +37,7 @@ class _KategoriAdminEditState extends State<KategoriAdminEdit> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return WillPopScope(
-          onWillPop: () async => false,
+        return PopScope(
           child: AlertDialog(
             title: const Text('Processing..'),
             content: const Column(

@@ -112,9 +112,9 @@ class _ProfilAdminState extends State<ProfilAdmin> {
                       OutlinedButton(
                         style: OutlinedButton.styleFrom(
                           shape: const StadiumBorder(),
-                          side: BorderSide(
+                          side: const BorderSide(
                             width: 2,
-                            color: const Color.fromARGB(255, 239, 147, 0)
+                            color:  Color.fromARGB(255, 239, 147, 0)
                           ),
                         ),
                         onPressed: () => Navigator.pop(context),
@@ -124,9 +124,9 @@ class _ProfilAdminState extends State<ProfilAdmin> {
                       OutlinedButton(
                         style: OutlinedButton.styleFrom(
                           shape: const StadiumBorder(),
-                          side: BorderSide(
+                          side: const BorderSide(
                             width: 2,
-                            color: const Color.fromARGB(255, 239, 147, 0),
+                            color: Color.fromARGB(255, 239, 147, 0),
                           ),
                         ),
                         onPressed: () {
