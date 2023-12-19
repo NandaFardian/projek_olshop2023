@@ -95,7 +95,7 @@ class _HomeUserState extends State<HomeUser> {
     });
     ex.clear();
     final response =
-        await http.get(Uri.parse(NetworkURL.totalKeranjang(userid!)));
+      await http.get(Uri.parse(NetworkURL.totalKeranjang(userid!)));
     final data = jsonDecode(response.body);
     data.forEach((api) {
       final exp = KeranjangModel(api['total']);
@@ -248,7 +248,7 @@ class _HomeUserState extends State<HomeUser> {
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.red),
+                                color: const Color.fromARGB(255, 239, 147, 0)),
                             child: Text(
                               a.namakategori!,
                               style: const TextStyle(

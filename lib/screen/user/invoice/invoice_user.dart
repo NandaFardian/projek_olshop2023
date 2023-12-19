@@ -24,6 +24,9 @@ class _InvoiceUserState extends State<InvoiceUser> {
         ),
         backgroundColor: const Color.fromARGB(255, 239, 147, 0),
       ),
+      body: const Center(
+        child: Text("Invoice"),
+      ),
     );
   }
 }

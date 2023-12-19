@@ -137,6 +137,7 @@ class _HomeUserDetailState extends State<HomeUserDetail> {
           widget.model.nama!,
           style: const TextStyle(
             fontSize: 10.0,
+            fontWeight: FontWeight.bold,
             color: Colors.white,
             fontFamily: 'MaisonNeue',
           ),
@@ -183,7 +184,7 @@ class _HomeUserDetailState extends State<HomeUserDetail> {
                 Text(
                   widget.model.keterangan!,
                   style: const TextStyle(
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w600,
                     fontSize: 18,
                   ),
                 ),
@@ -205,7 +206,7 @@ class _HomeUserDetailState extends State<HomeUserDetail> {
                 child: Text(
                   "Rp. ${price.format(int.parse(widget.model.harga!))}",
                   style: const TextStyle(
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.bold,
                     color: Colors.black,
                     fontSize: 22,
                   ),
@@ -219,7 +220,7 @@ class _HomeUserDetailState extends State<HomeUserDetail> {
                   margin: const EdgeInsets.all(8),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(18),
                       color: Colors.orange),
                   child: const Text(
                     "Add to Cart",
