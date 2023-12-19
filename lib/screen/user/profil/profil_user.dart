@@ -200,7 +200,7 @@ class _ProfilUserState extends State<ProfilUser> {
                                 color: const Color.fromARGB(255, 239, 147, 0),
                               ),
                               Text(
-                                a.nama.toUpperCase(),
+                                a.nama!.toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 15.0,
                                   color: Colors.black,
@@ -216,15 +216,15 @@ class _ProfilUserState extends State<ProfilUser> {
                                 ),
                               ),
                               InfoCard(
-                                text: a.email,
+                                text: a.email!,
                                 icon: Icons.email,
                               ),
                               InfoCard(
-                                text: a.alamat,
+                                text: a.alamat!,
                                 icon: Icons.map,
                               ),
                               InfoCard(
-                                text: a.noHp,
+                                text: a.noHp!,
                                 icon: Icons.phone_iphone,
                               ),
                               const SizedBox(

@@ -71,10 +71,10 @@ class _ProfilEditGambarState extends State<ProfilEditGambar> {
 
     var url = Uri.parse(NetworkURL.profilEditGambar());
     var request = http.MultipartRequest("POST", url);
-    request.fields['userid'] = widget.model.id;
+    request.fields['userid'] = widget.model.id!;
 
     if (imageFile == null) {
-      request.fields['gambar'] = widget.model.gambar;
+      request.fields['gambar'] = widget.model.gambar!;
     } else {
       var pic = await http.MultipartFile.fromPath("gambar", imageFile!.path);
       request.files.add(pic);

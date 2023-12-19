@@ -66,7 +66,7 @@ class _ProfilUserEditState extends State<ProfilUserEdit> {
     var request = http.MultipartRequest("POST", url);
     request.fields['email'] = emailController.text;
     request.fields['password'] = passwordController.text;
-    request.fields['userid'] = widget.model.id;
+    request.fields['userid'] = widget.model.id!;
     var response = await request.send();
     response.stream.transform(utf8.decoder).listen((a) {
       final data = jsonDecode(a);

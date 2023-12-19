@@ -1,24 +1,24 @@
 // ignore_for_file: file_names
 
 class UserModel {
-  final String id;
-  final String nama;
-  final String email;
-  final String alamat;
-  final String noHp;
-  final String password;
-  final String level;
-  final String gambar;
+  final String? id;
+  final String? nama;
+  final String? email;
+  final String? alamat;
+  final String? noHp;
+  final String? password;
+  final String? level;
+  final String? gambar;
 
   UserModel({
-    required this.id,
-    required this.nama,
-    required this.email,
-    required this.alamat,
-    required this.noHp,
-    required this.password,
-    required this.level,
-    required this.gambar,
+    this.id,
+    this.nama,
+    this.email,
+    this.alamat,
+    this.noHp,
+    this.password,
+    this.level,
+    this.gambar,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
