@@ -37,22 +37,6 @@ class NetworkURL {
     return "$server/API/produkHapus.php";
   }
 
-  static String keranjang() {
-    return "$server/API/keranjang.php";
-  }
-
-  static String keranjangTambah() {
-    return "$server/API/keranjangTambah.php";
-  }
-
-  static String keranjangHapus() {
-    return "$server/API/keranjangHapus.php";
-  }
-
-  static String keranjangEdit() {
-    return "$server/API/keranjangEdit.php";
-  }
-
   static String kategori() {
     return "$server/API/kategori.php";
   }
@@ -81,4 +65,24 @@ class NetworkURL {
     return "$server/API/invoiceDetail.php";
   }
 
+  static String totalKeranjang(String userid) {
+    return "$server/API/totalKeranjang.php?userid=$userid";
+  }
+
+  static String tambahKeranjang() {
+    return "$server/API/tambahKeranjang.php";
+  }
+
+  static String isiKeranjang(String userid) {
+    return "$server/API/isiKeranjang.php?userid=$userid";
+  }
+
+  static String summaryAmountCart(String userid) {
+    return "$server/API/summaryAmountCart.php?userid=$userid";
+  }
+
+  static String updateQuantity() {
+    return "$server/API/updateQuantity.php";
+  }
 }
+

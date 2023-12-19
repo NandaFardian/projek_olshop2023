@@ -3,10 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:olshop2023/model/kategori_user_model.dart';
+import 'package:olshop2023/model/keranjang_model.dart';
 import 'package:olshop2023/model/produkModel.dart';
 import 'package:olshop2023/network/network.dart';
 import 'package:http/http.dart' as http;
+import 'package:olshop2023/screen/user/home/cari_produk.dart';
 import 'package:olshop2023/screen/user/home/home_user_detail.dart';
+import 'package:olshop2023/screen/user/home/keranjang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeUser extends StatefulWidget {
@@ -29,6 +32,7 @@ class _HomeUserState extends State<HomeUser> {
     setState(() {
       userid = pref.getString("id");
     });
+    getTotalCart();
   }
 
   //koneksi filter berdasarkan kategori
@@ -80,6 +84,32 @@ class _HomeUserState extends State<HomeUser> {
       });
     }
   }
+
+  var loadingNotif = false;
+  String total = "0";
+  final ex = <KeranjangModel>[];
+
+  getTotalCart() async {
+    setState(() {
+      loadingNotif = true;
+    });
+    ex.clear();
+    final response =
+        await http.get(Uri.parse(NetworkURL.totalKeranjang(userid!)));
+    final data = jsonDecode(response.body);
+    data.forEach((api) {
+      final exp = KeranjangModel(api['total']);
+      ex.add(exp);
+      setState(() {
+        total = exp.total;
+      });
+    });
+    setState(() {
+      loadingNotif = false;
+      getTotalCart();
+    });
+  }
+
   //tutup koneksi produk
 
   Future<void> onRefresh() async {
@@ -96,6 +126,7 @@ class _HomeUserState extends State<HomeUser> {
     getProduct();
     getProductwithCategory();
     getPref();
+    getTotalCart();
   }
 
   @override
@@ -104,7 +135,15 @@ class _HomeUserState extends State<HomeUser> {
       backgroundColor: const Color.fromARGB(255, 255, 228, 199),
       appBar: AppBar(
         title: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CariProduk(),
+              ),
+            );
+          },
+          
           child: Container(
             height: 50,
             padding: const EdgeInsets.all(4),
@@ -137,10 +176,40 @@ class _HomeUserState extends State<HomeUser> {
         backgroundColor: const Color.fromARGB(255, 239, 147, 0),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
-            icon: const Stack(
-              children: <Widget>[
-                Icon(Icons.shopping_cart, color: Colors.white,),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Keranjang(getTotalCart),
+                ),
+              );
+            },
+            icon: Stack(
+              children: [
+                const Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                ),
+                total == "0"
+                    ? const SizedBox()
+                    : Positioned(
+                        right: 0,
+                        top: -4,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blue,
+                          ),
+                          child: Text(
+                            total,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
               ],
             ),
           ),
@@ -167,8 +236,7 @@ class _HomeUserState extends State<HomeUser> {
                       itemBuilder: (context, i) {
                         final a = listCategory[i];
                         return InkWell(
-                          onTap: () 
-                          {
+                          onTap: () {
                             setState(() {
                               filter = true;
                               index = i;
@@ -180,7 +248,7 @@ class _HomeUserState extends State<HomeUser> {
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: const Color.fromARGB(255, 239, 147, 0)),
+                                color: Colors.red),
                             child: Text(
                               a.namakategori!,
                               style: const TextStyle(
@@ -229,7 +297,8 @@ class _HomeUserState extends State<HomeUser> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomeUserDetail(a),
+                                        builder: (context) =>
+                                            HomeUserDetail(a, onRefresh),
                                       ),
                                     );
                                   },
@@ -302,7 +371,8 @@ class _HomeUserState extends State<HomeUser> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomeUserDetail(a),
+                                    builder: (context) =>
+                                        HomeUserDetail(a, onRefresh),
                                   ),
                                 );
                               },
