@@ -45,7 +45,7 @@ class _InvoiceAdminDetailState extends State<InvoiceAdminDetail> {
                   height: 6,
                 ),
                 Text(
-                  widget.model.userid,
+                  widget.model.userid!,
                   textAlign: TextAlign.right,
                   style: const TextStyle(
                     fontSize: 15.0,
@@ -60,7 +60,7 @@ class _InvoiceAdminDetailState extends State<InvoiceAdminDetail> {
                   ),
                 ),   
                 Text(
-                  widget.model.invoice,
+                  widget.model.invoice!,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 15.0,
@@ -75,7 +75,7 @@ class _InvoiceAdminDetailState extends State<InvoiceAdminDetail> {
                   ),
                 ),
                 Text(
-                  widget.model.status,
+                  widget.model.status!,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 15.0,
@@ -84,7 +84,7 @@ class _InvoiceAdminDetailState extends State<InvoiceAdminDetail> {
                   ),
                 ),
                 Text(
-                  widget.model.mPembayaran,
+                  widget.model.mPembayaran!,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 15.0,

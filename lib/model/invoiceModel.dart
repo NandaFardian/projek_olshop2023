@@ -1,18 +1,18 @@
 // ignore_for_file: file_names
 
 class InvoiceModel {
-  final String id;
-  final String invoice;
-  final String userid;
-  final String mPembayaran;
-  final String status;
+  final String? id;
+  final String? invoice;
+  final String? userid;
+  final String? mPembayaran;
+  final String? status;
 
   InvoiceModel({
-    required this.id,
-    required this.invoice,
-    required this.userid,
-    required this.mPembayaran,
-    required this.status,
+    this.id,
+    this.invoice,
+    this.userid,
+    this.mPembayaran,
+    this.status,
   });
 
   factory InvoiceModel.fromJson(Map<String, dynamic> json) {

@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:olshop2023/model/invoiceModel.dart';
 import 'package:olshop2023/model/keranjang_isi_model.dart';
 import 'package:olshop2023/network/network.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 class Keranjang extends StatefulWidget {
   final VoidCallback method;
-  const Keranjang(this.method,{super.key});
+  const Keranjang(this.method, {super.key});
 
   @override
   State<Keranjang> createState() => _KeranjangState();
@@ -89,12 +92,102 @@ class _KeranjangState extends State<Keranjang> {
     }
   }
 
+  cekOut() async {
+    final response = await http.post(
+        Uri.parse(
+          NetworkURL.cekOut(),
+        ),
+        body: {
+          "userid": userid,
+          "total": totalPrice,
+        });
+    final data = jsonDecode(response.body);
+    int value = data['value'];
+    String message = data['message'];
+
+    if (value == 1) {
+      setState(() {
+        widget.method();
+      });
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Platform.isAndroid
+              ? AlertDialog(
+                  title: Text("Information"),
+                  content: Text(message),
+                  actions: [
+                    // ignore: deprecated_member_use
+                    OutlinedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        setState(() {
+                          Navigator.pop(context);
+                        });
+                      },
+                      child: Text("Ok"),
+                    ),
+                  ],
+                )
+              : CupertinoAlertDialog(
+                  title: Text("Information"),
+                  content: Text(message),
+                  actions: [
+                    // ignore: deprecated_member_use
+                    OutlinedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        setState(() {
+                          Navigator.pop(context);
+                        });
+                      },
+                      child: Text("Ok"),
+                    ),
+                  ],
+                );
+        },
+      );
+    } else {
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Platform.isAndroid
+              ? AlertDialog(
+                  title: Text("Warning"),
+                  content: Text(message),
+                  actions: [
+                    // ignore: deprecated_member_use
+                    OutlinedButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text("Ok"),
+                    ),
+                  ],
+                )
+              : CupertinoAlertDialog(
+                  title: Text("Warning"),
+                  content: Text(message),
+                  actions: [
+                    // ignore: deprecated_member_use
+                    OutlinedButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text("Ok"),
+                    ),
+                  ],
+                );
+        },
+      );
+    }
+  }
+
   _addQuantity(KeranjangIsiModel model, String tipe) async {
     await http.post(Uri.parse(NetworkURL.updateQuantity()), body: {
       "keranjangid": model.id,
       "userid": userid,
       "tipe": tipe,
     });
+
     setState(() {
       widget.method();
       _fetchData();
@@ -106,6 +199,7 @@ class _KeranjangState extends State<Keranjang> {
     super.initState();
     getPref();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,7 +312,9 @@ class _KeranjangState extends State<Keranjang> {
                                   width: 10,
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    cekOut();
+                                  },
                                   child: Container(
                                     padding: const EdgeInsets.all(16),
                                     decoration: BoxDecoration(
