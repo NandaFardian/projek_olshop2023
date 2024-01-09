@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -91,7 +93,19 @@ class _KeranjangState extends State<Keranjang> {
     }
   }
 
-  cekOut() async {
+  _addQuantity(KeranjangIsiModel model, String tipe) async {
+    await http.post(Uri.parse(NetworkURL.updateQuantity()), body: {
+      "keranjangid": model.id,
+      "userid": userid,
+      "tipe": tipe,
+    });
+    setState(() {
+      widget.method();
+      _fetchData();
+    });
+  }
+
+  kirimKeranjang() async {
     final response = await http.post(
         Uri.parse(
           NetworkURL.cekOut(),
@@ -103,18 +117,17 @@ class _KeranjangState extends State<Keranjang> {
     final data = jsonDecode(response.body);
     int value = data['value'];
     String message = data['message'];
-
     if (value == 1) {
       setState(() {
         widget.method();
+        _fetchData();
       });
-      // ignore: use_build_context_synchronously
       showDialog(
         context: context,
         builder: (context) {
           return Platform.isAndroid
               ? AlertDialog(
-                  title: Text("Information"),
+                  title: const Text("Information"),
                   content: Text(message),
                   actions: [
                     // ignore: deprecated_member_use
@@ -125,12 +138,12 @@ class _KeranjangState extends State<Keranjang> {
                           Navigator.pop(context);
                         });
                       },
-                      child: Text("Ok"),
+                      child: const Text("Ok"),
                     ),
                   ],
                 )
               : CupertinoAlertDialog(
-                  title: Text("Information"),
+                  title: const Text("Information"),
                   content: Text(message),
                   actions: [
                     // ignore: deprecated_member_use
@@ -141,56 +154,42 @@ class _KeranjangState extends State<Keranjang> {
                           Navigator.pop(context);
                         });
                       },
-                      child: Text("Ok"),
+                      child: const Text("Ok"),
                     ),
                   ],
                 );
         },
       );
     } else {
-      // ignore: use_build_context_synchronously
       showDialog(
         context: context,
         builder: (context) {
           return Platform.isAndroid
               ? AlertDialog(
-                  title: Text("Warning"),
+                  title: const Text("Warning"),
                   content: Text(message),
                   actions: [
                     // ignore: deprecated_member_use
                     OutlinedButton(
                       onPressed: () => Navigator.pop(context),
-                      child: Text("Ok"),
+                      child: const Text("Ok"),
                     ),
                   ],
                 )
               : CupertinoAlertDialog(
-                  title: Text("Warning"),
+                  title: const Text("Warning"),
                   content: Text(message),
                   actions: [
                     // ignore: deprecated_member_use
                     OutlinedButton(
                       onPressed: () => Navigator.pop(context),
-                      child: Text("Ok"),
+                      child: const Text("Ok"),
                     ),
                   ],
                 );
         },
       );
     }
-  }
-
-  _addQuantity(KeranjangIsiModel model, String tipe) async {
-    await http.post(Uri.parse(NetworkURL.updateQuantity()), body: {
-      "keranjangid": model.id,
-      "userid": userid,
-      "tipe": tipe,
-    });
-
-    setState(() {
-      widget.method();
-      _fetchData();
-    });
   }
 
   @override
@@ -312,7 +311,7 @@ class _KeranjangState extends State<Keranjang> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    cekOut();
+                                    kirimKeranjang();
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.all(16),

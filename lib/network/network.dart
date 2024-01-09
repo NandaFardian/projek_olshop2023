@@ -1,5 +1,5 @@
 class NetworkURL {
-  static String server = "http://192.168.1.6/projek_olshop";
+  static String server = "http://10.10.10.250/projek_olshop";
 
   static String login() {
     return "$server/API/login.php";
@@ -57,14 +57,6 @@ class NetworkURL {
     return "$server/API/kategoriFilter.php";
   }
 
-  static String invoice() {
-    return "$server/API/invoice.php";
-  }
-
-  static String invoiceDetail() {
-    return "$server/API/invoiceDetail.php";
-  }
-
   static String totalKeranjang(String userid) {
     return "$server/API/totalKeranjang.php?userid=$userid";
   }
@@ -87,6 +79,10 @@ class NetworkURL {
 
   static String cekOut() {
     return "$server/API/pesan.php";
+  }
+
+  static String invoice(String userid) {
+    return "$server/API/invoice.php?userid=$userid";
   }
 }
 

@@ -56,7 +56,7 @@ class _MenuUserState extends State<MenuUser> {
             ),
             Offstage(
               offstage: selectIndex != 1,
-              child: const InvoiceUser(),
+              child: const Invoice(),
             ),
             Offstage(
               offstage: selectIndex != 2,
