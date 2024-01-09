@@ -1,5 +1,5 @@
 class NetworkURL {
-  static String server = "http://192.168.100.228/projek_olshop";
+  static String server = "http://192.168.1.6/projek_olshop";
 
   static String login() {
     return "$server/API/login.php";

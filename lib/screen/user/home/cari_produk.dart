@@ -66,6 +66,8 @@ class _CariProdukState extends State<CariProduk> {
     super.initState();
     getProduct();
   }
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
