@@ -119,7 +119,7 @@ class _ProdukAdminTambahState extends State<ProdukAdminTambah> {
 
     request.fields['nama'] = namaController.text.trim();
     request.fields['kategoriid'] = kategoriModel.id;
-    request.fields['harga'] = hargaController.text.trim();
+    request.fields['harga'] = hargaController.text.replaceAll(",","");
     request.fields['keterangan'] = keteranganController.text.trim();
     request.fields['tanggal'] = "$tgl";
     var pic = await http.MultipartFile.fromPath("gambar", _imageFile!.path);
