@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:olshop2023/screen/admin/invoice/invoice_admin.dart';
 import 'package:olshop2023/screen/admin/kategori/kategori_admin.dart';
 import 'package:olshop2023/screen/admin/produk/produk_admin.dart';
 import 'package:olshop2023/screen/admin/profil/profiladmin.dart';
@@ -61,10 +60,6 @@ class _MenuAdminState extends State<MenuAdmin> {
             child: const ProdukAdmin(),
           ),
           Offstage(
-            offstage: selectIndex != 2,
-            child: const InvoiceAdmin(),
-          ),
-          Offstage(
             offstage: selectIndex != 3,
             child: const ProfilAdmin(),
           ),
@@ -122,30 +117,6 @@ class _MenuAdminState extends State<MenuAdmin> {
                     style: TextStyle(
                         fontSize: 10.0,
                         color: selectIndex == 1
-                            ? const Color.fromARGB(255, 239, 147, 0)
-                            : Colors.grey),
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    selectIndex = 2;
-                  });
-                },
-                child: Tab(
-                  icon: Icon(
-                    Icons.assignment_outlined,
-                    size: 30.0,
-                    color: selectIndex == 2
-                        ? const Color.fromARGB(255, 239, 147, 0)
-                        : Colors.grey,
-                  ),
-                  child: Text(
-                    'Invoice',
-                    style: TextStyle(
-                        fontSize: 10.0,
-                        color: selectIndex == 2
                             ? const Color.fromARGB(255, 239, 147, 0)
                             : Colors.grey),
                   ),
